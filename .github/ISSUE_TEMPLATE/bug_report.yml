@@ -1,0 +1,32 @@
+name: Bug report
+description: Something isn't working
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Send "hi" to the test number
+        2. Open the inbox
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Hosting, database and model
+      placeholder: Vercel + Neon, gpt-5.4-mini
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Server output. Remove access tokens, phone numbers and message content.
+      render: text

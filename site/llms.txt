@@ -1,0 +1,24 @@
+# Bluetick
+
+> Bluetick is an open source WhatsApp AI agent on Meta's official WhatsApp Cloud API. Developers define the agent's tools and hooks in TypeScript; the business tunes the prompt, business details, knowledge base and handoff rules in a dashboard. MIT licensed, self-hosted, by Voir Labs.
+
+## What it does
+
+- Answers customers on WhatsApp through the official Cloud API, with signed webhooks, the 24-hour service window and STOP/START opt-outs handled.
+- Agents are defined in code with `defineAgent`, `defineTool` and the `beforeReply`, `afterReply` and `onHandoff` hooks in the `@bluetick/agent` package. Built-in tools cover knowledge search, leads, booking requests, opening hours, location pins and handoff.
+- Answers from your documents: PDFs, Markdown, text, web pages and snippets, embedded and searched with pgvector.
+- Reads voice notes (transcribed) and photos (shown to the model).
+- Human handoff: keyword rules, the agent or a tool hands a conversation to the inbox, where a person replies and hands it back. Captured leads and booking requests show next to the chat.
+- A dashboard simulator runs the same agent with side effects switched off, and agents are unit-testable with a mock model, without WhatsApp, a database or an API key.
+
+## Stack
+
+Next.js, TypeScript, PostgreSQL with pgvector, Prisma and AI SDK 7. OpenAI by default, any AI SDK model, or any OpenAI-compatible API. One agent and one WhatsApp number per deployment; runs on Vercel or any Node.js host.
+
+## Links
+
+- [Website](https://bluetick.voirlabs.io/)
+- [Source code and quickstart](https://github.com/voirlabs/bluetick)
+- [WhatsApp setup guide](https://github.com/voirlabs/bluetick/blob/main/docs/whatsapp-setup.md)
+- [Customizing the agent](https://github.com/voirlabs/bluetick/blob/main/docs/customizing-the-agent.md)
+- [Voir Labs](https://www.voirlabs.io/): the studio behind Bluetick

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bluetick · Open source WhatsApp AI agent on the Cloud API</title>
+  <meta name="description" content="A self-hosted WhatsApp AI agent on the official Cloud API. Write tools in TypeScript, answer from your docs and hand off to a human. Open source by Voir Labs.">
+  <link rel="canonical" href="https://bluetick.voirlabs.io/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#080809">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bluetick">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Bluetick · WhatsApp AI agents, defined in code">
+  <meta property="og:description" content="An open source WhatsApp AI agent you define in TypeScript. It answers from your docs and hands chats to a person when needed.">
+  <meta property="og:url" content="https://bluetick.voirlabs.io/">
+  <meta property="og:image" content="https://bluetick.voirlabs.io/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Bluetick logo with the headline &quot;WhatsApp AI agents, defined in code&quot; and &quot;by Voir Labs&quot;">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@voir_labs">
+  <meta name="twitter:title" content="Bluetick · WhatsApp AI agents, defined in code">
+  <meta name="twitter:description" content="An open source WhatsApp AI agent you define in TypeScript. It answers from your docs and hands chats to a person when needed.">
+  <meta name="twitter:image" content="https://bluetick.voirlabs.io/og.png">
+  <meta name="twitter:image:alt" content="The Bluetick logo with the headline &quot;WhatsApp AI agents, defined in code&quot; and &quot;by Voir Labs&quot;">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","@id":"https://bluetick.voirlabs.io/#software","name":"Bluetick","description":"An open source, self-hosted WhatsApp AI agent on the official WhatsApp Cloud API. Developers define tools and hooks in TypeScript; the business tunes the prompt, knowledge base and handoff rules in a dashboard.","url":"https://bluetick.voirlabs.io/","applicationCategory":"BusinessApplication","operatingSystem":"Web, Linux, macOS, Windows","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/voirlabs/bluetick","sameAs":["https://github.com/voirlabs/bluetick"],"image":"https://bluetick.voirlabs.io/og.png","author":{"@id":"https://www.voirlabs.io/#organization"},"publisher":{"@id":"https://www.voirlabs.io/#organization"}},{"@type":"Organization","@id":"https://www.voirlabs.io/#organization","name":"Voir Labs","url":"https://www.voirlabs.io/"},{"@type":"WebSite","@id":"https://bluetick.voirlabs.io/#website","url":"https://bluetick.voirlabs.io/","name":"Bluetick","publisher":{"@id":"https://www.voirlabs.io/#organization"}},{"@type":"WebPage","@id":"https://bluetick.voirlabs.io/#webpage","url":"https://bluetick.voirlabs.io/","name":"Bluetick · Open source WhatsApp AI agent on the Cloud API","description":"A self-hosted WhatsApp AI agent on the official Cloud API. Write tools in TypeScript, answer from your docs and hand off to a human. Open source by Voir Labs.","isPartOf":{"@id":"https://bluetick.voirlabs.io/#website"},"about":{"@id":"https://bluetick.voirlabs.io/#software"},"primaryImageOfPage":"https://bluetick.voirlabs.io/og.png","inLanguage":"en","publisher":{"@id":"https://www.voirlabs.io/#organization"}}]}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600&amp;display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Bluetick home"><img src="assets/logo.svg" alt="" width="30" height="30">bluetick</a>
+      <nav class="nav" aria-label="Main">
+        <a class="hide-sm" href="#features">Features</a>
+        <a class="hide-sm" href="#code">Code</a>
+        <a class="hide-sm" href="#self-host">Self-host</a>
+        <a href="https://github.com/voirlabs/bluetick">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="dot"></span>Open source · MIT · Official Cloud API</p>
+            <h1>WhatsApp AI agents,<br><em>defined in code</em></h1>
+            <p class="lede">An open source agent that answers your customers on the official WhatsApp Cloud API. It runs the tools you write in TypeScript against your own database, and anyone on your team can take over a chat from the inbox.</p>
+            <div class="ctas">
+              <a class="btn" href="https://github.com/voirlabs/bluetick#quickstart">Get started</a>
+              <a class="btn ghost" href="https://demo.bluetick.voirlabs.io/">Live demo</a>
+            </div>
+            <p class="note">Works on Meta's free test number.</p>
+          </div>
+          <figure class="hero-art"><img src="assets/hero.webp" alt="A paper-cut shop sign shaped like a chat bubble, marked with a single check" width="880" height="880" fetchpriority="high"></figure>
+        </div>
+
+        <div class="frame" role="img" aria-label="A customer books a table over chat; the agent checks availability, offers times as buttons, then hands off to staff">
+          <div class="frame-bar"><span>Inbox · +1 555 012 3456 · restaurant-booking example</span></div>
+          <div class="frame-body mock-cols">
+            <div class="mock">
+              <div class="label">Conversation</div>
+              <div class="bubble"><small>Customer</small>Table for 4 this Friday around 8?</div>
+              <span class="chip">tool · checkAvailability(2026-11-27, 4, 20:00)</span>
+              <div class="bubble me"><small>Agent</small>Friday works. Which time suits you best?</div>
+              <div class="pill-row"><span class="pill">19:30</span><span class="pill">20:00</span><span class="pill">20:30</span></div>
+              <div class="bubble"><small>Customer</small>20:00. Also, can you do a birthday cake?</div>
+              <span class="chip">handoff · special request to your team</span>
+            </div>
+            <div class="mock">
+              <div class="label">Captured</div>
+              <div class="bubble"><small>Booking request</small>Fri 27 Nov · 20:00 · party of 4</div>
+              <div class="bubble"><small>Status</small>Needs attention · a human has taken over</div>
+              <div class="bubble me"><small>You, from the inbox</small>Happy birthday in advance. We'll have a cake ready.</div>
+              <span class="chip">24-hour service window: open</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="features">
+      <div class="wrap">
+        <div class="head">
+          <div>
+            <p class="eyebrow">Features</p>
+            <h2>The WhatsApp plumbing<br>is <em>already built</em></h2>
+          </div>
+          <p class="sub">Signed webhooks, the 24-hour service window, opt-outs, handoff and a test harness come with it. You write the business logic.</p>
+        </div>
+        <div class="grid">
+          <div class="card"><h3>Agents in TypeScript</h3><p><code>defineAgent</code>, <code>defineTool</code> and hooks in TypeScript. Tools get the customer, memory, buttons, location pins and handoff.</p></div>
+          <div class="card"><h3>Answers from your docs</h3><p>Upload PDFs, text or URLs, searched with pgvector so replies stay on what you offer. Voice notes are transcribed and photos read, too.</p></div>
+          <div class="card"><h3>Human handoff</h3><p>The agent escalates on your rules. You reply from the inbox and hand control back. The 24-hour window is enforced for you.</p></div>
+          <div class="card"><h3>Test before you go live</h3><p>The dashboard simulator runs the same agent. Unit-test agents with a mock model, no WhatsApp or API key needed.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="code" class="alt">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">One file</p>
+          <h2>Your agent is<br><em>one file</em></h2>
+          <p class="sub">Add a tool and it shows up in the dashboard, where the business switches it on. Built-ins cover knowledge search, leads, booking requests, opening hours, location and handoff.</p>
+          <ul class="checks">
+            <li>Hooks: <code>beforeReply</code>, <code>afterReply</code>, <code>onHandoff</code></li>
+            <li>OpenAI by default, any AI SDK model, or any OpenAI-compatible API</li>
+            <li>Two worked examples with tests: restaurant booking and order lookup</li>
+          </ul>
+        </div>
+        <div class="code">
+          <div class="code-bar"><span>agent.config.ts</span></div>
+<pre><span class="k">import</span> { builtin, defineAgent, defineTool }
+  <span class="k">from</span> '@bluetick/agent'
+<span class="k">import</span> { z } <span class="k">from</span> 'zod'
+
+<span class="k">const</span> orderStatus = defineTool({
+  description: 'Look up an order for this customer',
+  input: z.object({ orderId: z.string() }),
+  run: ({ orderId }, ctx) =>
+    getOrder(orderId, ctx.customer.phone), <span class="c">// your API</span>
+})
+
+<span class="k">export default</span> defineAgent({
+  tools: { orderStatus, ...builtin.all() },
+  hooks: {
+    onHandoff: ({ reason }) => notifyTeam(reason),
+  },
+})</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="self-host">
+      <div class="wrap split">
+        <div>
+          <p class="eyebrow">Self-host</p>
+          <h2>Host it<br><em>yourself</em></h2>
+          <p class="sub">A Next.js app and Postgres with pgvector. Run it on Vercel with Neon or Supabase, or on any Node host.</p>
+          <ul class="checks">
+            <li>Meta's official WhatsApp Cloud API</li>
+            <li>Webhook signatures checked; every message stored</li>
+            <li>One admin password; no accounts to manage</li>
+          </ul>
+          <a class="btn ghost" href="https://github.com/voirlabs/bluetick#quickstart">Read the quickstart</a>
+        </div>
+        <div class="code">
+          <div class="code-bar"><span>Terminal</span><button class="copy" type="button" data-copy="git clone https://github.com/voirlabs/bluetick.git
+cd bluetick
+pnpm install
+docker compose up -d
+cp apps/web/.env.example apps/web/.env
+pnpm db:setup
+pnpm dev">Copy</button></div>
+          <pre><span class="k">git clone</span> https://github.com/voirlabs/bluetick.git
+<span class="k">cd</span> bluetick && <span class="k">pnpm</span> install
+<span class="k">docker compose</span> up -d                    <span class="c"># Postgres + pgvector</span>
+<span class="k">cp</span> apps/web/.env.example apps/web/.env  <span class="c"># add your keys</span>
+<span class="k">pnpm</span> db:setup
+<span class="k">pnpm</span> dev                                <span class="c"># http://localhost:3000</span></pre>
+        </div>
+      </div>
+      <div class="wrap">
+        <ol class="steps three">
+          <li><h3>Clone and configure</h3><p>Postgres, an OpenAI key and an admin password.</p></li>
+          <li><h3>Describe your business</h3><p>The setup assistant drafts the agent; edit hours, location and rules.</p></li>
+          <li><h3>Connect WhatsApp</h3><p>Paste the webhook URL into your Meta app and send a test message.</p></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <p class="credit"><a class="made" href="https://www.voirlabs.io/"><img src="assets/voir-mark.svg" alt="" width="20" height="14" loading="lazy">by Voir Labs</a> · MIT licensed</p>
+      </div>
+      <nav class="family" aria-label="Project links">
+        <a href="https://github.com/voirlabs/bluetick">GitHub</a>
+        <a href="https://demo.bluetick.voirlabs.io/">Live demo</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".copy").forEach((b) => b.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Copied"; }
+      catch { b.textContent = "Select and copy"; }
+      setTimeout(() => (b.textContent = "Copy"), 1600);
+    }));
+  </script>
+</body>
+</html>

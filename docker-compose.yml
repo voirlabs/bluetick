@@ -1,0 +1,17 @@
+# Local Postgres with pgvector for development:
+#   docker compose up -d
+#   DATABASE_URL=postgresql://postgres:postgres@localhost:5432/agent
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: agent
+    ports:
+      - '127.0.0.1:5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

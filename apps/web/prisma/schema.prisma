@@ -1,0 +1,142 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+/// The one agent this deployment runs. Always has id "default".
+model Agent {
+  id              String   @id @default("default")
+  name            String
+  systemPrompt    String   @map("system_prompt")
+  /// Business details: name, hours, timezone, location, coordinates.
+  businessContext Json     @default("{}") @map("business_context")
+  toolsEnabled    Json     @default("[]") @map("tools_enabled")
+  greetingMessage String   @default("") @map("greeting_message")
+  fallbackMessage String   @map("fallback_message")
+  escalationRules Json     @default("[]") @map("escalation_rules")
+  allowedTopics   Json     @default("[]") @map("allowed_topics")
+  language        String   @default("en")
+  /// "active" replies to customers; "paused" sends every message to the inbox.
+  status          String   @default("active")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("agent")
+}
+
+/// One per customer phone number.
+model Conversation {
+  id             String    @id @default(cuid())
+  customerPhone  String    @unique @map("customer_phone")
+  customerName   String?   @map("customer_name")
+  /// "active", "needs_attention" or "resolved".
+  status         String    @default("active")
+  /// While true the agent stays silent and a human replies from the inbox.
+  handoffMode    Boolean   @default(false) @map("handoff_mode")
+  lastInboundAt  DateTime? @map("last_inbound_at")
+  resolvedAt     DateTime? @map("resolved_at")
+  /// Per-conversation key/value store for tools (ctx.memory).
+  memory         Json      @default("{}")
+  /// When the customer last went over the message limit and the conversation was flagged.
+  limitedAt      DateTime? @map("limited_at")
+  /// When the owner was last alerted about a lead or booking here, to send at most one an hour.
+  leadAlertAt    DateTime? @map("lead_alert_at")
+  bookingAlertAt DateTime? @map("booking_alert_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  messages Message[]
+  leads    Lead[]
+  bookings Booking[]
+
+  @@map("conversations")
+}
+
+model Message {
+  id             String   @id @default(cuid())
+  conversationId String   @map("conversation_id")
+  /// "inbound", "outbound" or "system" (internal notes, never shown to the model).
+  direction      String
+  content        String
+  contentType    String   @default("text") @map("content_type")
+  waMessageId    String?  @unique @map("wa_message_id")
+  toolCalls      Json?    @map("tool_calls")
+  inputTokens    Int?     @map("input_tokens")
+  outputTokens   Int?     @map("output_tokens")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId, createdAt])
+  @@map("messages")
+}
+
+/// Saved by the collectLead tool.
+model Lead {
+  id             String   @id @default(cuid())
+  conversationId String   @map("conversation_id")
+  fields         Json     @default("{}")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@map("leads")
+}
+
+/// Saved by booking tools. The team confirms requests outside the app.
+model Booking {
+  id             String   @id @default(cuid())
+  conversationId String   @map("conversation_id")
+  status         String   @default("pending")
+  /// What the customer asked for: requestedFor, service, partySize, notes.
+  details        Json     @default("{}")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@map("bookings")
+}
+
+/// Customers who texted STOP. The agent ignores them until they text START.
+model OptOut {
+  id            String   @id @default(cuid())
+  customerPhone String   @unique @map("customer_phone")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@map("opt_outs")
+}
+
+model KnowledgeSource {
+  id           String    @id @default(cuid())
+  /// "document", "url" or "snippet".
+  type         String
+  name         String
+  /// "pending", "indexing", "indexed" or "failed".
+  indexStatus  String    @default("pending") @map("index_status")
+  errorMessage String?   @map("error_message")
+  indexedAt    DateTime? @map("indexed_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  chunks KnowledgeChunk[]
+
+  @@map("knowledge_sources")
+}
+
+model KnowledgeChunk {
+  id         String                       @id @default(cuid())
+  sourceId   String                       @map("source_id")
+  content    String
+  chunkIndex Int                          @map("chunk_index")
+  embedding  Unsupported("vector(1536)")?
+  createdAt  DateTime                     @default(now()) @map("created_at")
+
+  source KnowledgeSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+
+  @@map("knowledge_chunks")
+}

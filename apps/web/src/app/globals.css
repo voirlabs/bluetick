@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+
+/* Voir Labs tokens (https://www.voirlabs.io). The dashboard is dark only. */
+@theme {
+  --color-bg: #080809;
+  --color-surface: #0f0e11;
+  --color-surface-2: #131016;
+  --color-card: #17141d;
+  --color-card-line: #302b39;
+  --color-line: #27252b;
+  --color-line-2: #37313d;
+  --color-field: #121016;
+  /* Three text roles: primary, secondary, muted. Links use the accent. */
+  --color-text: #f3f1ed;
+  --color-muted: #b3acbc;
+  --color-faint: #8f8799;
+  --color-accent: #d0a2ff;
+  --color-accent-2: #c8acf5;
+  --color-accent-strong: #2a1f3a;
+  --color-accent-line: #46345f;
+  --color-pill: #f2f0ed;
+  --color-pill-hover: #d6c3ef;
+  --color-pill-ink: #151417;
+  --color-outline: #48464c;
+  --color-danger: #ff8a9b;
+  --color-success: #8fe3b5;
+  --color-warning: #f5c97a;
+
+  --font-sans:
+    var(--font-urbanist), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* One easing curve and a short duration for every colour and press change. */
+  --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Serif display headings: page titles and empty states only. */
+@utility display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* Small section labels: sentence case, quiet. */
+@utility section-label {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+/* Figures in stat cards: the interface face, tabular, set tight. */
+@utility figure {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  /* Dropdowns draw their own chevron, inset like the text, instead of the
+     browser's arrow pressed against the edge. */
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b3acbc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+  }
+  * {
+    border-color: var(--color-line);
+  }
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: #bea1e7;
+    color: var(--color-bg);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent-2);
+    outline-offset: 2px;
+  }
+  code,
+  pre {
+    font-family: var(--font-mono);
+  }
+  code {
+    font-size: 0.9em;
+    color: var(--color-text);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
